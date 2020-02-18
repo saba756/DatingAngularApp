@@ -19,6 +19,7 @@ import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
+import { MemberDetailResolver } from './_resolver/member-detail.resolver';
 
 export function tokenGetter(){
    return localStorage.getItem('token');
@@ -45,7 +46,7 @@ export function tokenGetter(){
       BsDropdownModule.forRoot(),
       JwtModule.forRoot({
          config: {
-            tokenGetter : tokenGetter,
+            tokenGetter: tokenGetter,
             whitelistedDomains:['localhost:44388'],
             blacklistedRoutes:['localhost:44388/api/Auth']
       }
@@ -54,7 +55,8 @@ export function tokenGetter(){
    ],
    providers: [
       AuthService,
-      ErrorInterceptorProvider
+      ErrorInterceptorProvider,
+      MemberDetailResolver
    ],
    bootstrap: [
       AppComponent
