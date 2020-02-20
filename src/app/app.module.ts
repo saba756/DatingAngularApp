@@ -4,7 +4,6 @@ import { HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BsDropdownModule, TabsModule } from 'ngx-bootstrap';
-import { HttpClient } from 'selenium-webdriver/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NavComponent } from './nav/nav.component';
 import { FormsModule } from '@angular/forms';
@@ -17,9 +16,11 @@ import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
+import { NgxGalleryModule } from 'ngx-gallery';
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 import { MemberDetailResolver } from './_resolver/member-detail.resolver';
+import { MemberListResolver } from './_resolver/member-list.resolver';
 
 export function tokenGetter(){
    return localStorage.getItem('token');
@@ -42,6 +43,7 @@ export function tokenGetter(){
       AppRoutingModule,
       FormsModule,
       TabsModule.forRoot(),
+      NgxGalleryModule,
       RouterModule.forRoot(appRoutes),
       BsDropdownModule.forRoot(),
       JwtModule.forRoot({
@@ -56,7 +58,8 @@ export function tokenGetter(){
    providers: [
       AuthService,
       ErrorInterceptorProvider,
-      MemberDetailResolver
+      MemberDetailResolver,
+      MemberListResolver
    ],
    bootstrap: [
       AppComponent
