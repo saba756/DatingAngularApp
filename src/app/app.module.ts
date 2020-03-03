@@ -23,6 +23,8 @@ import { MemberDetailResolver } from './_resolver/member-detail.resolver';
 import { MemberListResolver } from './_resolver/member-list.resolver';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { MemberEditResolver } from './_resolver/member-edit.resolver';
+import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
+import { PersonComponent } from './person/person.component';
 
 export function tokenGetter(){
    return localStorage.getItem('token');
@@ -44,7 +46,8 @@ export class CustomHammerConfig extends HammerGestureConfig{
       MessagesComponent,
       MemberCardComponent,
       MemberDetailComponent,
-      MemberEditComponent
+      MemberEditComponent,
+      PersonComponent
    ],
    imports: [
       BrowserModule,
@@ -55,21 +58,18 @@ export class CustomHammerConfig extends HammerGestureConfig{
       NgxGalleryModule,
       RouterModule.forRoot(appRoutes),
       BsDropdownModule.forRoot(),
-      JwtModule.forRoot({
-         config: {
-            tokenGetter: tokenGetter,
-            whitelistedDomains:['localhost:44388'],
-            blacklistedRoutes:['localhost:44388/api/Auth']
-      }
-   }),
-    
+      //JwtModule.forRoot(\r\nconfig)
    ],
-   providers: [
+   // blacklistedRoutes: [
+   //    'localhost
+   // ],
+providers: [
       AuthService,
       ErrorInterceptorProvider,
       MemberDetailResolver,
       MemberListResolver,
       MemberEditResolver,
+      PreventUnsavedChanges,
       { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }
    ],
    bootstrap: [

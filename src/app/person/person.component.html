@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+     Name
+    </div>
+    <div class="col">
+  Email
+    </div>
+    <div class="col">
+    Role
+        </div>
+        <div class="col">
+        Status
+            </div>
+  </div>
+
+  <div *ngFor="let item of person" class="row">
+    <div class="col">
+     {{item.username}}
+    </div>
+    <div class="col">
+      {{item.email}}
+    </div>
+    <div class="col">
+      {{item.role}}
+    </div>
+    <div class="col">
+      {{item.lockedstatus}}
+    </div>
+  </div>
+</div>
