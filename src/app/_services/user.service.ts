@@ -20,7 +20,7 @@ getUsers(page?, itemPerPage?): Observable<PaginatedResult<User[]>> {
   params = params.append('pageNumber', page);
   params = params.append('pageSize', itemPerPage);
 }
-  return this.http.get<User[]>(this.baseUrl + 'User',{observe: 'response', params})
+  return this.http.get<User[]>(this.baseUrl + 'User',{observe: 'response'})
 .pipe(
   map(response => {
     paginatedResult.result = response.body;
